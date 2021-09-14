@@ -49,7 +49,7 @@ public class LoginResponderImp implements LoginResponder{
 	private void produceLoginResponse() {
 		response = new LoginResponse();
 		setResponseInfoFromFullUserInfo();
-		response.setJwt(loginResponderInfo.getJwt());
+		//response.setJwt(loginResponderInfo.getJwt());
 	}
 	
 	private void setResponseInfoFromFullUserInfo() {

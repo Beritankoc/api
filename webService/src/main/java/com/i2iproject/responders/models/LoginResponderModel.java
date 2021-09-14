@@ -3,12 +3,12 @@ package com.i2iproject.responders.models;
 public class LoginResponderModel {
 	private String msisdn;
 	private String hashedPassword;
-	private String jwt;
+	//private String jwt;
 	
-	public LoginResponderModel(String msisdn, String hashedPassword, String jwt) {
+	public LoginResponderModel(String msisdn, String hashedPassword/*,String jwt*/) {
 		this.msisdn = msisdn;
 		this.hashedPassword = hashedPassword;
-		this.jwt = jwt;
+		//this.jwt = jwt;
 	}
 
 	public String getMsisdn() {
@@ -19,9 +19,9 @@ public class LoginResponderModel {
 		return hashedPassword;
 	}
 
-	public String getJwt() {
-		return jwt;
-	}
+//	public String getJwt() {
+//		return jwt;
+//	}
 	
 	
 }

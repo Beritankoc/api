@@ -50,10 +50,10 @@ public class LoginController {
 		if(isRequiredParametersSetInTheRequestBody(requestBody)) {
 			try {
 				String hashedPassword = passwordHasher.getSHA256(requestBody.getPassword());
-				String jwt = authenticate(requestBody.getMsisdn(),hashedPassword);
+				//String jwt = authenticate(requestBody.getMsisdn(),hashedPassword);
 				
 				LoginResponder loginResponder = producerOfLoginResponder.produceLoginResponder();
-				LoginResponderModel responderInputModel = new LoginResponderModel(requestBody.getMsisdn(), hashedPassword, jwt);
+				LoginResponderModel responderInputModel = new LoginResponderModel(requestBody.getMsisdn(), hashedPassword/*, jwt*/);
 				response = loginResponder.respond(responderInputModel);
 			}catch(UnAuthorizedException ea) {
 				response.setLoginSuccess(false);
@@ -70,14 +70,14 @@ public class LoginController {
 	}
 	
 	private String authenticate(String msisdn, String password) {
-		try {
-			authenticationManager.authenticate(
-					new UsernamePasswordAuthenticationToken(msisdn, password));
-		}catch (BadCredentialsException e) {
-			throw new UnAuthorizedException("BAD CREDENTIALS");
-		}catch (AuthenticationException e) {
-			throw new UnAuthorizedException("BAD CREDENTIALS");
-		}
+//		try {
+//			authenticationManager.authenticate(
+//					new UsernamePasswordAuthenticationToken(msisdn, password));
+//		}catch (BadCredentialsException e) {
+//			throw new UnAuthorizedException("BAD CREDENTIALS");
+//		}catch (AuthenticationException e) {
+//			throw new UnAuthorizedException("BAD CREDENTIALS");
+//		}
 		
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(msisdn);
 		return jwtTokenUtil.generateToken(userDetails);
